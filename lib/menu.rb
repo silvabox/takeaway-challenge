@@ -5,9 +5,7 @@ class Menu
   def_delegators :items, :each, :include?, :member?, :empty?
 
   def self.from_hash(hash)
-    menu = Menu.new
-    hash.each { |name, price| menu.add(name, price) }
-    menu
+    hash.each_with_object(Menu.new) { |name, price, menu| menu.add(name, price) }
   end
 
   def initialize
